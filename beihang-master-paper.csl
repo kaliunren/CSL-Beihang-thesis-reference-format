@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>Beihang Master Paper</title>
+    <id>http://www.zotero.org/styles/beihang-master-paper</id>
+    <link href="http://www.zotero.org/styles/beihang-master-paper" rel="self"/>
+    <link href="http://www.zotero.org/styles/elsevier-without-titles" rel="template"/>
+    <category citation-format="numeric"/>
+    <category field="generic-base"/>
+    <summary>Beihang Master Paper</summary>
+    <updated>2019-11-19T09:28:39+00:00</updated>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name delimiter-precedes-last="always" et-al-min="3" et-al-use-first="3" et-al-subsequent-use-first="0" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+      <label form="short" prefix=", "/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="editor">
+    <names variable="editor">
+      <name initialize-with="." delimiter=", " delimiter-precedes-last="always"/>
+      <label form="short" prefix=" (" text-case="capitalize-first" suffix=")"/>
+    </names>
+  </macro>
+  <macro name="year-date">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text term="no date" form="short"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="publisher">
+    <text variable="publisher"/>
+  </macro>
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="access">
+    <choose>
+      <if variable="URL">
+        <text variable="URL"/>
+        <group prefix=" (" suffix=")" delimiter=" ">
+          <text term="accessed"/>
+          <date variable="accessed" form="text"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+  <macro name="translator">
+    <names variable="translator"/>
+  </macro>
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout vertical-align="sup" delimiter="," prefix="[" suffix="]">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+  <bibliography entry-spacing="0" second-field-align="flush">
+    <layout>
+      <text variable="citation-number" prefix="[" suffix="]"/>
+      <text macro="author" suffix=". "/>
+      <choose>
+        <if type="book" match="any">
+          <group>
+            <text variable="title"/>
+            <text value="[M]" suffix=". "/>
+            <text macro="edition"/>
+            <text macro="translator" suffix=". "/>
+            <text variable="publisher-place" suffix=": "/>
+            <text macro="publisher" suffix=", "/>
+            <text macro="year-date"/>
+            <text variable="page" prefix=": "/>
+          </group>
+        </if>
+        <else-if type="paper-conference" match="any">
+          <text variable="title"/>
+          <text value="[A]" suffix=". "/>
+          <text macro="editor" suffix=". "/>
+          <text variable="container-title" form="long" text-case="title"/>
+          <text value="[C]" suffix=". "/>
+          <text variable="publisher-place" suffix=": "/>
+          <text macro="publisher" suffix=", "/>
+          <text macro="year-date"/>
+          <group delimiter=" ">
+            <label variable="page" form="short" prefix=": "/>
+            <text variable="page"/>
+          </group>
+        </else-if>
+        <else-if type="patent">
+          <group delimiter=", ">
+            <text variable="title"/>
+            <text variable="number"/>
+            <text macro="year-date"/>
+          </group>
+        </else-if>
+        <else-if type="thesis">
+          <group>
+            <text variable="title"/>
+            <text value="[D]" suffix=". "/>
+            <text variable="publisher-place" suffix=": "/>
+            <text variable="publisher" suffix=", "/>
+            <text macro="year-date"/>
+          </group>
+        </else-if>
+        <else-if type="article" match="any"/>
+        <else-if type="chapter" match="any">
+          <group>
+            <text variable="container-title"/>
+            <text value="[M]" suffix=". "/>
+            <text macro="edition" suffix=". "/>
+            <text macro="translator" suffix=". "/>
+            <text variable="publisher-place" suffix=": "/>
+            <text macro="publisher" suffix=", "/>
+            <text macro="year-date"/>
+            <text variable="page" prefix=": "/>
+          </group>
+        </else-if>
+        <else>
+          <group>
+            <text variable="title"/>
+            <text value="[J]" suffix=". "/>
+            <text variable="container-title" form="long" text-case="title" suffix=", "/>
+            <text macro="year-date" suffix=", "/>
+            <text variable="volume"/>
+            <text variable="issue" prefix="(" suffix=")"/>
+            <text variable="page" form="short" prefix=": "/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
